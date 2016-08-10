@@ -206,6 +206,67 @@ Blockly.Blocks['grove_serial_lcd_effect'] = {
   }
 };
 
+
+Blockly.Blocks['grove_lcd_rgb_backlight_print'] = {
+  helpUrl: 'http://www.seeedstudio.com/wiki/Grove_-_LCD_RGB_Backlight',
+  init: function() {
+    this.setColour(190);
+    this.appendDummyInput()
+        .appendField("LCD RGB Backlight")
+        .appendField(new Blockly.FieldImage("http://www.seeedstudio.com/wiki/images/thumb/0/03/Serial_LEC_RGB_Backlight_Lcd.jpg/500px-Serial_LEC_RGB_Backlight_Lcd.jpg", 64, 64));
+    this.appendValueInput("TEXT", 'String')
+        .setCheck('String')
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("print line1");
+    this.appendValueInput("TEXT2", 'String')
+        .setCheck('String')
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("print line2")
+    this.appendValueInput("DELAY_TIME", 'Number')
+        .setCheck('Number')
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Delay");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('print text on an 16 character by 2 line LCD.');
+  }
+};
+
+//grove lcd power on/off
+Blockly.Blocks['grove_lcd_rgb_backlight_power'] = {
+  helpUrl: 'http://www.seeedstudio.com/wiki/Grove_-_LCD_RGB_Backlight',
+  init: function() {
+    this.setColour(190);
+    this.appendDummyInput()
+        .appendField("LCD RGB Backlight")
+        .appendField(new Blockly.FieldImage("http://www.seeedstudio.com/wiki/images/thumb/0/03/Serial_LEC_RGB_Backlight_Lcd.jpg/500px-Serial_LEC_RGB_Backlight_Lcd.jpg", 64, 64));
+    this.appendDummyInput()
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Power")
+        .appendField(new Blockly.FieldDropdown([["ON", "ON"], ["OFF", "OFF"]]), "STATE");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Turn LCD power on/off');
+  }
+};
+
+Blockly.Blocks['grove_lcd_rgb_backlight_color'] = {
+  helpUrl: 'http://www.seeedstudio.com/wiki/Grove_-_LCD_RGB_Backlight',
+  init: function() {
+    this.setColour(190);
+    this.appendDummyInput()
+        .appendField("LCD RGB Backlight")
+        .appendField(new Blockly.FieldImage("http://www.seeedstudio.com/wiki/images/thumb/0/03/Serial_LEC_RGB_Backlight_Lcd.jpg/500px-Serial_LEC_RGB_Backlight_Lcd.jpg", 64, 64));
+    this.appendDummyInput()
+            .setAlign(Blockly.ALIGN_RIGHT)
+            .appendField("Backlight Color")
+            .appendField(new Blockly.FieldColour("#00ff00"), "COLOR");
+   this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setTooltip('Change backlight color');
+  }
+};
+
 Blockly.Blocks['grove_sound_sensor'] = {
   helpUrl: 'http://www.seeedstudio.com/wiki/Grove_-_Sound_Sensor',
   init: function() {

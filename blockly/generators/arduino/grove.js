@@ -30,7 +30,6 @@ goog.provide('Blockly.Arduino.grove');
 
 goog.require('Blockly.Arduino');
 
-
 Blockly.Arduino.grove_led = function() {
   var dropdown_pin = this.getFieldValue('PIN');
   var dropdown_stat = this.getFieldValue('STAT');
@@ -250,6 +249,55 @@ Blockly.Arduino.grove_serial_lcd_effect = function() {
     code += '.autoscroll();\n';
   }
   return code;
+};
+
+Blockly.Arduino.grove_lcd_rgb_backlight_print = function() {
+  var text = Blockly.Arduino.valueToCode(this, 'TEXT',
+      Blockly.Arduino.ORDER_UNARY_POSTFIX) || '\'\'';
+  var text2 = Blockly.Arduino.valueToCode(this, 'TEXT2',
+      Blockly.Arduino.ORDER_UNARY_POSTFIX) || '\'\'';
+  var delay_time = Blockly.Arduino.valueToCode(this, 'DELAY_TIME', Blockly.Arduino.ORDER_ATOMIC) || '1000';
+  /*if(text.length>16||text2.length>16){
+      alert("string is too long");
+  }*/
+  Blockly.Arduino.definitions_['define_wire'] = '#include <Wire.h>\n';
+  Blockly.Arduino.definitions_['define_rgb_lcd'] = '#include <rgb_lcd.h>\n';
+  Blockly.Arduino.definitions_['var_rgb_lcd'] = 'rgb_lcd lcd;\n';
+
+  /* default h/w: 16 cols, 2 rows */
+  Blockly.Arduino.setups_['setup_rgb_lcd'] = 'lcd.begin(16, 2);\n';
+  var code = 'lcd.setCursor(0,0);\n';
+  code    += 'lcd.print('+text+');\n';
+  code    += 'lcd.setCursor(0,1);\n';
+  code    += 'lcd.print('+text2+');\n';
+  code    += 'delay('+delay_time+');\n';
+  return code;
+};
+
+Blockly.Arduino.grove_lcd_rgb_backlight_power = function() {
+  var dropdown_stat = this.getFieldValue('STATE');
+
+  Blockly.Arduino.definitions_['define_wire'] = '#include <Wire.h>\n';
+  Blockly.Arduino.definitions_['define_rgb_lcd'] = '#include <rgb_lcd.h>\n';
+  Blockly.Arduino.definitions_['var_rgb_lcd'] = 'rgb_lcd lcd;\n';
+
+  var code;
+  if(dropdown_stat==="ON"){
+    code = 'lcd.display();\n';
+  } else {
+    code = 'lcd.noDisplay();\n';
+  }
+  return code;
+};
+
+Blockly.Arduino.grove_lcd_rgb_backlight_color = function() {
+  var rgb = goog.color.hexToRgb(this.getFieldValue('COLOR'));
+
+  Blockly.Arduino.definitions_['define_wire'] = '#include <Wire.h>\n';
+  Blockly.Arduino.definitions_['define_rgb_lcd'] = '#include <rgb_lcd.h>\n';
+  Blockly.Arduino.definitions_['var_rgb_lcd'] = 'rgb_lcd lcd;\n';
+
+  return 'lcd.setRGB(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ');\n';
 };
 
 Blockly.Arduino.grove_sound_sensor = function() {

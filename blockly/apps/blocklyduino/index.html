@@ -442,6 +442,27 @@ function init() {
       <block type="grove_serial_lcd_power"></block>
       <block type="grove_serial_lcd_effect"></block>
     </category>
+    <category name="Grove LCD RGB Backlight">
+      <block type="grove_lcd_rgb_backlight_print">
+        <value name="TEXT">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="TEXT2">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="DELAY_TIME">
+          <block type="math_number">
+            <field name="NUM">1000</field>
+          </block>
+        </value>
+      </block>
+      <block type="grove_lcd_rgb_backlight_power"></block>
+      <block type="grove_lcd_rgb_backlight_color"></block>
+    </category>
     <category name="Grove Motor">
       <block type="grove_motor_shield"></block>
     </category>
