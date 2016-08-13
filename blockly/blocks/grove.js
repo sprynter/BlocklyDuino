@@ -130,7 +130,7 @@ Blockly.Blocks['grove_temporature_sensor'] = {
   init: function() {
     this.setColour(10);
     this.appendDummyInput()
-        .appendField("Temporature Sensor")
+        .appendField("Temperature Sensor")
         .appendField(new Blockly.FieldImage("http://www.seeedstudio.com/wiki/images/thumb/b/b0/Temperature1.jpg/400px-Temperature1.jpg", 64, 64))
         .appendField("PIN#")
         .appendField(new Blockly.FieldDropdown(profile.default.analog), "PIN")
